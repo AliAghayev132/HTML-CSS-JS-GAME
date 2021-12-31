@@ -7,10 +7,11 @@ export default class Game{
 
 	}
 	update(dt){
-		this.player.setTexture('/HTML-CSS-JS-GAME/Resources/test.png')
+		this.player.setTexture('/Resources/test.png')	
 	}
 	render(dt){
 
 		this.player.render();
+		
 	}
 }
