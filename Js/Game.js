@@ -1,17 +1,18 @@
-import  Box from './Library/box.js'
+import Player from "./Entities/Player.js";
 export default class Game{
-
-	player = new Box(100,100,100,100);
-	
-	move(){
-
+	#player;
+	initPlayer(){
+		this.#player = new Player(120,80);
+		this.#player.setTexture("/HTML-CSS-JS-GAME/Resources/test.png");
+	}
+	constructor() {
+		this.initPlayer();
 	}
 	update(dt){
-		this.player.setTexture('/Resources/test.png')	
+		this.#player.update(dt);
 	}
 	render(dt){
-
-		this.player.render();
-		
+		this.#player.render();
 	}
 }
+

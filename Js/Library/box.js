@@ -1,3 +1,4 @@
+import bs from "./basic.js";
 export default class Box {
 
 	#box = document.createElement("div");
@@ -7,7 +8,8 @@ export default class Box {
 	#y;
 	#color;
 
-	constructor(width,height,x,y,color = "none"){
+	constructor(width,height,x=0,y=0,color = "none"){
+		
 		this.#width = width;
 		this.#height = height;
 		this.#x = x;
@@ -21,8 +23,11 @@ export default class Box {
 		this.#box.style.height = height + "px";
 		this.#box.style.backgroundColor = this.#color;
 		this.#box.style.display = "none";
+		this.#box.style.overflow= "hidden";
 		document.body.appendChild(this.#box);
+
 	}
+
 
 	setPositions(x,y){
 		this.#x=x;
@@ -31,7 +36,6 @@ export default class Box {
 	getPositions(){
 		return {x:this.#x,y:this.#y}
 	}
-
 	getSize(){
 		return{width:this.#width,height:this.#height}
 	}
@@ -45,7 +49,16 @@ export default class Box {
 	setTexture(path){
 		this.#box.style.backgroundImage = "url("+path+")";
 	}
-	render(){
+	setBorder(color,thickness){
+		this.#box.style.borderColor = color;
+		this.#box.style.borderWidth = thickness + "px";
+		this.#box.style.borderStyle = "solid";
+	}
+	setRect(obj){
+		this.#box.style.backgroundPosition = `${obj.left}px ${obj.top}px`;
+	} 
+	draw(){
 		this.#box.style.display ="block";
 	}
+
 }
