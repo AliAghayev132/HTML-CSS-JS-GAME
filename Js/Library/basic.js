@@ -5,4 +5,9 @@ export default class bs{
 		this.width = width; 
 		this.height = height; 
 	}
+
+	static Vector2i = function (x = 0,y = 0) {
+		this.x = x;
+		this.y = y;
+	}
 }
