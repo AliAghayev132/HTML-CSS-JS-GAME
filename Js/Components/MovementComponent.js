@@ -1,5 +1,4 @@
 import bs from "../Library/basic.js";
-import Box from "../Library/box.js";
 export default class MovementComponent {
   #acceleration;
   #deceleration;
@@ -24,14 +23,14 @@ export default class MovementComponent {
     return this.#velocity;
   }
   move(dir_x, dir_y) {
-    this.#velocity.x = this.#velocity.x + this.#acceleration * dir_x;
-    this.#velocity.y = this.#velocity.y + this.#acceleration * dir_y;
+    this.#velocity.x = this.#velocity.x + (this.#acceleration * dir_x);
+    this.#velocity.y = this.#velocity.y + (this.#acceleration * dir_y);
   }
   update(dt) {
     if (this.#velocity.x > 0.0) {
       if (this.#velocity.x > this.#maxVelocity)
         this.#velocity.x = this.#maxVelocity;
-
+ 
       this.#velocity.x -= this.#deceleration;
       if (this.#velocity.x < 0.0) this.#velocity.x = 0.0;
     }
@@ -40,7 +39,6 @@ export default class MovementComponent {
         this.#velocity.x = -this.#maxVelocity;
 
       this.#velocity.x += this.#deceleration;
-
       if (this.#velocity.x > 0.0) this.#velocity.x = 0.0;
     }
     let temp = (this.#velocity.x / dt).toFixed(2);

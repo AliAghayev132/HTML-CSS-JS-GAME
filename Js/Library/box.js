@@ -62,7 +62,8 @@ export default class Box {
     this.#box.style.display = "block";
   }
   moveObject(x, y) {
-    this.#box.style.left = parseInt(this.#box.style.left) + x + "px";
+    this.#box.style.left = parseFloat(this.#box.style.left) + x + "px";
     this.#box.style.top += y + "px";
+    // console.log(`Sonra: ${this.#box.style.left}`);
   }
 }

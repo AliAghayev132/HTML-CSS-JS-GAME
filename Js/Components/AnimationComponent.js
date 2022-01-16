@@ -1,6 +1,6 @@
 export default class AnimationComponent{
 
-	#timer = 0;
+	#timer = 0.0;
 	#animationTimer;
 	#width;
 	#height;
@@ -23,10 +23,9 @@ export default class AnimationComponent{
 	}
 
 	updateAnimation(dt,rect){
-		//dt ni düzelt sonra
 		if(this.#timer >= this.#animationTimer){
 
-			this.#timer = 0;
+			this.#timer = 0.0;
 			if(this.#currentX < this.#endX){
 				this.#currentX++;
 			}else{
@@ -37,8 +36,8 @@ export default class AnimationComponent{
 			}else{
 				this.#currentY = this.#startY;
 			}
-		}this.#timer +=1;
-		
+		}
+		this.#timer = this.#timer + 10/dt;
 		rect.left = this.#width*this.#currentX;
 		rect.top = this.#height*this.#currentY;
 	}

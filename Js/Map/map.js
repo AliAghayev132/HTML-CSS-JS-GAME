@@ -7,7 +7,6 @@ export default class Map {
   render() {
     for (let i in this.#objects) {
       this.#objects[i].render();
-      
     }
   }
 }

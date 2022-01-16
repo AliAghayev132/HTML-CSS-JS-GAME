@@ -1,6 +1,6 @@
 import Box from "../Library/box.js";
-import AnimationComponent from "../Components/AnimationComponent.js";
 import bs from "../Library/basic.js";
+import AnimationComponent from "../Components/AnimationComponent.js";
 import MovementComponent from "../Components/MovementComponent.js";
 export default class Entity {
   //Variables
