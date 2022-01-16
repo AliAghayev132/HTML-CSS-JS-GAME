@@ -1,14 +1,16 @@
-import Game from "./Game.js"
+import Game from "./Game.js";
+
+let key = "";
 
 const game = new Game();
-
-//Delta time
-let lastUpdate = Date.now()
-let myInterval = setInterval(
-	function(){		
-		let now = Date.now();
-		let dt = now - this.lastUpdate;
-		this.lastUpdate = now;
-		game.update(dt);
-		game.render(dt);
-	},0) 
+document.onkeydown = function (e) {
+  key = e.key;
+};
+let lastTime = 0;
+(function gameloop(timestamp) {
+  let deltaTime = timestamp - lastTime;
+  lastTime = timestamp;
+  game.run(deltaTime, key);
+  key = "";
+  requestAnimationFrame(gameloop);
+})();

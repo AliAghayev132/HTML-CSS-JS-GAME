@@ -23,7 +23,7 @@ export default class AnimationComponent{
 	}
 
 	updateAnimation(dt,rect){
-		
+		//dt ni düzelt sonra
 		if(this.#timer >= this.#animationTimer){
 
 			this.#timer = 0;
