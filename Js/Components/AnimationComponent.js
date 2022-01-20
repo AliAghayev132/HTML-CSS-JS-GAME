@@ -14,7 +14,6 @@ export default class AnimationComponent {
     this.#animations.get(key).updateAnimation(dt, rect);
   }
 }
-
 class Animation {
   #timer = 0.0;
   #animationTimer;
