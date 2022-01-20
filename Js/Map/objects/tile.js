@@ -1,4 +1,4 @@
-import GameObject from "../../Library/gameobject.js";
+import GameObject from "./gameobject.js";
 
 export default class Tile extends GameObject{
 	

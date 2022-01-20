@@ -4,6 +4,7 @@ export default class HitboxComponent {
   #hitbox;
   #offSetX;
   #offsetY;
+  #currentBool = false;
   constructor(width, height, x, y, offsetX, offsetY, color) {
     this.#offSetX = offsetX;
     this.#offsetY = offsetY;
@@ -13,7 +14,9 @@ export default class HitboxComponent {
   getHitbox() {
     return this.#hitbox;
   }
-
+  getContains() {
+    return this.#currentBool;
+  }
   setOffset(x, y) {
     this.#offSetX = x;
     this.#offsetY = y;
@@ -25,11 +28,10 @@ export default class HitboxComponent {
     this.#hitbox.draw();
   }
   contains(hitbox) {
-    return (
+    this.#currentBool =
       this.#hitbox.getPositionX() + this.#hitbox.getSize().width >=
         hitbox.getPositionX() &&
       hitbox.getPositionX() + hitbox.getSize().width >=
-        this.#hitbox.getPositionX()
-    );
+        this.#hitbox.getPositionX();
   }
 }

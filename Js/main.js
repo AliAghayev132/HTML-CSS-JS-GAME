@@ -13,7 +13,7 @@ let lastTime = 0;
 (function gameloop(timestamp) {
   let deltaTime = timestamp - lastTime;
   lastTime = timestamp;
-  game.run(deltaTime = 0, key);
+  game.run(deltaTime, key);
   key = "";
   requestAnimationFrame(gameloop);
 })();

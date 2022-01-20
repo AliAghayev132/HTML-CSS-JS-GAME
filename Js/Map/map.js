@@ -7,9 +7,13 @@ export default class Map {
   loadFromSave(path){
 
   }
-  update(dt){
+  getItem(par = this.#objects.length - 1){
+    return this.#objects[par];
+  }
+  update(player){
+
     for (let i in this.#objects) {
-      this.#objects[i].update(dt);
+      this.#objects[i].update(player);
     }
   }
   render() {

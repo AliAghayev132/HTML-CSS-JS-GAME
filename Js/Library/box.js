@@ -5,7 +5,7 @@ export default class Box {
   #height;
   #color;
   #flip;
-  constructor(width, height, x = 0, y = 0) {
+  constructor(width, height, x, y) {
     this.#width = width;
     this.#height = height;
     this.#color = "none";

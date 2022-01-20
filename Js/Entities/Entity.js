@@ -14,8 +14,24 @@ export default class Entity {
   initShape(width, height, x, y) {
     this._shape = new Box(width, height, x, y);
   }
-  createHitboxComponent(width, height, x, y,offsetX,offsetY,color = "green") {
-    this._hitboxComponent = new HitboxComponent(width, height, x, y,offsetX,offsetY,color);
+  createHitboxComponent(
+    width,
+    height,
+    x,
+    y,
+    offsetX,
+    offsetY,
+    color = "green",
+  ) {
+    this._hitboxComponent = new HitboxComponent(
+      width,
+      height,
+      x,
+      y,
+      offsetX,
+      offsetY,
+      color,
+    );
   }
   createAnimationComponent() {
     this._animationComponent = new AnimationComponent();
@@ -46,20 +62,23 @@ export default class Entity {
       this._movementComponent.update(dt);
     }
     if (this._hitboxComponent) {
-      this._hitboxComponent.update(this._shape.getPositionX(),this._shape.getPositionY());
+      this._hitboxComponent.update(
+        this._shape.getPositionX(),
+        this._shape.getPositionY(),
+      );
     }
   }
 
-  getHitbox(){
+  getHitbox() {
     return this._hitboxComponent.getHitbox();
   }
 
-  contains(hitbox){
-    return  this._hitboxComponent.contains(hitbox);
-  }
+  // contains(hitbox) {
+  //   return this._hitboxComponent.contains(hitbox);
+  // }
   render() {
     this._shape.draw();
-    if(this._hitboxComponent){
+    if (this._hitboxComponent) {
       this._hitboxComponent.render();
     }
   }
