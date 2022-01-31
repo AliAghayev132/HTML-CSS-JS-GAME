@@ -1,17 +1,19 @@
 export default class Map {
-  #objects = [];
-  constructor() {}
+  #objects;
+  initVariables() {
+    this.#objects = [];
+  }
+  constructor() {
+    this.initVariables();
+  }
   addItem(item) {
     this.#objects.push(item);
   }
-  loadFromSave(path){
-
-  }
-  getItem(par = this.#objects.length - 1){
+  loadFromSave(path) {}
+  getItem(par = this.#objects.length - 1) {
     return this.#objects[par];
   }
-  update(player){
-
+  update(player) {
     for (let i in this.#objects) {
       this.#objects[i].update(player);
     }

@@ -6,11 +6,15 @@ import Box from "../Library/box.js";
 export default class Entity {
   //Variables
   _shape;
-  _animationRect = new bs.Rect(0, 0, 0, 0);
-  _animationComponent = null;
-  _movementComponent = null;
-  _hitboxComponent = null;
+  _animationComponent;
+  _movementComponent;
+  _hitboxComponent;
 
+  initVariables() {
+    this._animationComponent = null;
+    this._movementComponent = null;
+    this._hitboxComponent = null;
+  }
   initShape(width, height, x, y) {
     this._shape = new Box(width, height, x, y);
   }
@@ -34,20 +38,28 @@ export default class Entity {
     );
   }
   createAnimationComponent() {
-    this._animationComponent = new AnimationComponent();
+    this._animationComponent = new AnimationComponent(this._shape);
   }
   createMovementComponent(acceleration, deceleration, max_velocity) {
     this._movementComponent = new MovementComponent(
       acceleration,
-
       deceleration,
       max_velocity,
       this._shape,
     );
   }
   constructor(width, height, x = 0, y = 0) {
+    this.initVariables();
     this.initShape(width, height, x, y);
+    this.createAnimationComponent();
   }
+  getPositionX() {
+    return this._shape.getPositionX();
+  }
+  getPositionY() {
+    return this._shape.getPositionY();
+  }
+
   move(dir_x, dir_y) {
     this._movementComponent.move(dir_x, dir_y);
   }
@@ -55,9 +67,6 @@ export default class Entity {
     this._shape.setTexture(path);
   }
   update(dt) {
-    if (this._animationComponent) {
-      this._shape.setRect(this._animationRect);
-    }
     if (this._movementComponent) {
       this._movementComponent.update(dt);
     }
@@ -68,14 +77,9 @@ export default class Entity {
       );
     }
   }
-
   getHitbox() {
     return this._hitboxComponent.getHitbox();
   }
-
-  // contains(hitbox) {
-  //   return this._hitboxComponent.contains(hitbox);
-  // }
   render() {
     this._shape.draw();
     if (this._hitboxComponent) {

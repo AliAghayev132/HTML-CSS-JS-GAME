@@ -1,12 +1,16 @@
 import Entity from "./Entity.js";
 export default class Player extends Entity {
+  initAnimations() {
+    this._animationComponent.addAnimation("run", 120, 80, 0, 0, 9, 0, 4);
+    this._animationComponent.addAnimation("idle", 120, 80, 0, 1, 9, 0, 4);
+  }
+
   constructor(width, height, x, y) {
     super(width, height, x, y);
     this.createAnimationComponent();
-    this._animationComponent.addAnimation("run", 120, 80, 0, 0, 9, 0, 4);
-    this._animationComponent.addAnimation("idle", 120, 80, 0, 1, 9, 0, 4);
     this.createMovementComponent(7.0, 2.0, 30.0);
-    this.createHitboxComponent(22, 40, 0, 276, 43, 40, "red");
+    this.createHitboxComponent(22, 40, 0, 276, 43, 40, "yellow");
+    this.initAnimations();
   }
   updateAnimation(dt) {
     if (this._movementComponent.getVelocityX() > 0) {
@@ -25,7 +29,6 @@ export default class Player extends Entity {
       this._animationComponent.playAnimation("idle", dt, this._animationRect);
     }
   }
-
   update(dt) {
     super.update(dt);
     this.updateAnimation(dt);

@@ -1,7 +1,10 @@
+let sprite;
 export default class AnimationComponent {
   #animations = new Map();
 
-  constructor() {}
+  constructor(shape) {
+    sprite = shape;
+  }
 
   addAnimation(key, width, height, startX, startY, endX, endY, animationTimer) {
     this.#animations.set(
@@ -38,7 +41,7 @@ class Animation {
     this.#currentY = this.#startY;
   }
 
-  updateAnimation(dt, rect) {
+  updateAnimation(dt) {
     if (this.#timer >= this.#animationTimer) {
       this.#timer = 0.0;
       if (this.#currentX < this.#endX) {
@@ -53,8 +56,10 @@ class Animation {
       }
     }
     this.#timer = this.#timer + 10 / dt;
-    rect.left = this.#width * this.#currentX;
-    rect.top = this.#height * this.#currentY;
+    sprite.setRect({
+      left: this.#width * this.#currentX,
+      top: this.#height * this.#currentY,
+    });
   }
 
   resetAnimation() {

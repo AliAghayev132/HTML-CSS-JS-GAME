@@ -1,19 +1,12 @@
 import Game from "./Game.js";
 
-let key = "";
-
 const game = new Game();
-document.onkeydown = function (e) {
-  key = e.key.toLocaleLowerCase();
-};
-
-
 //Game core
+
 let lastTime = 0;
-(function gameloop(timestamp) {
+(function gameloop(timestamp = 0) {
   let deltaTime = timestamp - lastTime;
   lastTime = timestamp;
-  game.run(deltaTime, key);
-  key = "";
+  game.run(deltaTime);
   requestAnimationFrame(gameloop);
 })();

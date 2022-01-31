@@ -2,49 +2,61 @@ import Player from "./Entities/Player.js";
 import OutsideHouse from "./Scenes/OutsideHouse.js";
 
 export default class Game {
+  //Variables
   #player;
-  #gameScenes = [];
-  initGameScene(){
+  #gameScenes;
+  
+  //Initializer functions
+
+  initVariables() {
+    this.#player = null;
+    this.#gameScenes = [];
+  }
+  initGameScene() {
     this.#gameScenes.push(new OutsideHouse());
-    // this.#gameScenes.push(new InsideHouse());
   }
   initPlayer() {
     this.#player = new Player(120, 80, 0, 276);
     this.#player.setTexture("/HTML-CSS-JS-GAME/Resources/test.png");
   }
+
+  //Constructor
+
   constructor() {
+    this.initVariables();
     this.initGameScene();
     this.initPlayer();
   }
+  
   //Update Functions
-  updatePlayerInput(key) {
-    if (key == "d") this.#player.move(1, 0);
-    if (key == "a") this.#player.move(-1, 0);
-    if (key == "w") this.#player.move(0, -1);
-    if (key == "s") this.#player.move(0, 1);
+
+  updatePlayerInput() {
+    const that = this;
+
+    document.onkeydown = function (e) {
+      let key = e.key.toLocaleLowerCase();
+      if (key == "d") that.#player.move(1, 0);
+      if (key == "a") that.#player.move(-1, 0);
+    };
   }
-  updatePlayer(key) {
-    this.updatePlayerInput(key);
-  }
-  update(dt,key) {
-    this.#gameScenes[this.#gameScenes.length-1].update(this.#player);
-    this.updatePlayer(key);
+
+  update(dt) {
+    this.updatePlayerInput();
     this.#player.update(dt);
+    this.#gameScenes[this.#gameScenes.length - 1].update(this.#player);
   }
 
   //Render
+
   render() {
-    this.#gameScenes[this.#gameScenes.length-1].render();
+    this.#gameScenes[this.#gameScenes.length - 1].render();
     this.#player.render();
   }
 
   //Run
-  run(dt, key) {
-    if(isNaN(dt)){
-      dt = 0.0;
-    }
-    this.update(dt, key);
+
+  run(dt) {
+    this.update(dt);
     this.render();
   }
-
 }
