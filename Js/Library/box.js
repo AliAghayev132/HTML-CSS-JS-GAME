@@ -87,6 +87,7 @@ export default class Box {
     this.#box.style.borderStyle = "solid";
   }
   setRect(obj) {
+    console.log(obj);
     this.#texture.style.backgroundPosition = `${obj.left}px ${obj.top}px`;
   }
 

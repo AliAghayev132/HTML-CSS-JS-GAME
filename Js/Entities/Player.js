@@ -1,7 +1,7 @@
 import Entity from "./Entity.js";
 export default class Player extends Entity {
   initAnimations() {
-    this._animationComponent.addAnimation("run", 120, 80, 0, 0, 9, 0, 4);
+    this._animationComponent.addAnimation("run", 120, 80, 0, 0, 9, 0, 2.5);
     this._animationComponent.addAnimation("idle", 120, 80, 0, 1, 9, 0, 4);
   }
 

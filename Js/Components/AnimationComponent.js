@@ -56,9 +56,9 @@ class Animation {
       }
     }
     this.#timer = this.#timer + 10 / dt;
-    console.log(this.#width * this.#currentX, this.#height * this.#currentY);
+    // console.log(this.#width * this.#currentX, this.#height * this.#currentY);
     sprite.setRect({
-      left: this.#width * this.#currentX,
+      left: -(this.#width * this.#currentX),
       top: this.#height * this.#currentY,
     });
   }
