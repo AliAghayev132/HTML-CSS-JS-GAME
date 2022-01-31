@@ -20,8 +20,8 @@ export default class Box {
     this.#box.style.textAlign = "center";
     this.#flip = 1;
 
-    this.#texture.style.width = width +"px";
-    this.#texture.style.height = height +"px";
+    this.#texture.style.width = width + "px";
+    this.#texture.style.height = height + "px";
     this.#texture.style.display = "none";
     this.#texture.style.overflow = "hidden";
     this.#texture.style.left = x + "px";
@@ -29,7 +29,6 @@ export default class Box {
 
     this.#box.appendChild(this.#texture);
     document.body.appendChild(this.#box);
-
   }
 
   //Accessors
@@ -45,14 +44,14 @@ export default class Box {
   getSize() {
     return { width: this.#width, height: this.#height };
   }
-  getFlip(){
+  getFlip() {
     return this.#flip;
   }
   //Modifiers
-  setFontSize(par){
+  setFontSize(par) {
     this.#box.style.fontSize = par + "px";
   }
-  setFontFamily(par){
+  setFontFamily(par) {
     this.#box.style.fontFamily = par;
   }
   setColor(color) {
@@ -75,11 +74,11 @@ export default class Box {
   setTexture(path) {
     this.#texture.style.backgroundImage = "url(" + path + ")";
   }
-  setOrigin(x = 0,y = 0){
-    this.#texture.style.marginLeft= x + "px";
-    this.#texture.style.marginTop= y + "px";
-  } 
-  setText(text){
+  setOrigin(x = 0, y = 0) {
+    this.#texture.style.marginLeft = x + "px";
+    this.#texture.style.marginTop = y + "px";
+  }
+  setText(text) {
     this.#box.innerText = text;
   }
   setBorder(color, thickness) {
@@ -88,20 +87,20 @@ export default class Box {
     this.#box.style.borderStyle = "solid";
   }
   setRect(obj) {
-    this.#texture.style.backgroundPosition = `${obj.left}px ${obj.top}px`;  
+    this.#texture.style.backgroundPosition = `${obj.left}px ${obj.top}px`;
   }
 
   //Custom
   flipTexture(par = 1) {
     this.#texture.style.transform = `scaleX(${par})`;
     this.#flip = par;
-  } 
+  }
 
   draw() {
     this.#box.style.display = "block";
     this.#texture.style.display = "block";
   }
-  clear(){
+  clear() {
     this.#box.style.display = "none";
     this.#texture.style.display = "none";
   }
@@ -109,6 +108,4 @@ export default class Box {
     this.#box.style.left = parseFloat(this.#box.style.left) + x + "px";
     this.#box.style.top += parseFloat(this.#box.style.top) + y + "px";
   }
-
-
 }
