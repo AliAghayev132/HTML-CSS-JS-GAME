@@ -1,19 +1,19 @@
 import AnimationComponent from "../Components/AnimationComponent.js";
 import HitboxComponent from "../Components/HitboxComponent.js";
 import MovementComponent from "../Components/MovementComponent.js";
-import bs from "../Library/basic.js";
 import Box from "../Library/box.js";
 export default class Entity {
   //Variables
-  _shape;
-  _animationComponent;
-  _movementComponent;
-  _hitboxComponent;
 
+  constructor(width, height, x = 0, y = 0) {
+    this.initVariables();
+    this.initShape(width, height, x, y);
+    this.createAnimationComponent();
+  }
   initVariables() {
-    this._animationComponent = null;
-    this._movementComponent = null;
-    this._hitboxComponent = null;
+    this._animationComponent = undefined;
+    this._movementComponent = undefined;
+    this._hitboxComponent = undefined;
   }
   initShape(width, height, x, y) {
     this._shape = new Box(width, height, x, y);
@@ -22,7 +22,7 @@ export default class Entity {
     width,
     height,
     x,
-    y,
+    y,  
     offsetX,
     offsetY,
     color = "green",
@@ -48,11 +48,7 @@ export default class Entity {
       this._shape,
     );
   }
-  constructor(width, height, x = 0, y = 0) {
-    this.initVariables();
-    this.initShape(width, height, x, y);
-    this.createAnimationComponent();
-  }
+
   getPositionX() {
     return this._shape.getPositionX();
   }

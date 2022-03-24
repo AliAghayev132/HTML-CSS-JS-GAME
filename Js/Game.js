@@ -1,62 +1,44 @@
 import Player from "./Entities/Player.js";
 import OutsideHouse from "./Scenes/OutsideHouse.js";
+import Box from "./Library/box.js";
 
 export default class Game {
-  //Variables
-  #player;
-  #gameScenes;
-  
-  //Initializer functions
+    //Constructor
 
-  initVariables() {
-    this.#player = null;
-    this.#gameScenes = [];
-  }
-  initGameScene() {
-    this.#gameScenes.push(new OutsideHouse());
-  }
-  initPlayer() {
-    this.#player = new Player(120, 80, 0, 276);
-    this.#player.setTexture("/HTML-CSS-JS-GAME/Resources/test.png");
-  }
+    constructor() {
+        this.gameScenes = [];
+        this.gameScenes.push(new OutsideHouse());
+        this.player = new Player(120, 80, 0, 276);
+        this.player.setTexture("/HTML-CSS-JS-GAME/Resources/test.png");
+    }
 
-  //Constructor
+    //Update Functions
 
-  constructor() {
-    this.initVariables();
-    this.initGameScene();
-    this.initPlayer();
-  }
-  
-  //Update Functions
+    updatePlayerInput() {
+        document.onkeydown = (e) => {
+            let key = e.key.toLocaleLowerCase();
+            if (key == "d") this.player.move(1, 0);
+            if (key == "a") this.player.move(-1, 0);
+        };
+    }
 
-  updatePlayerInput() {
-    const that = this;
+    update(dt) {
+        this.updatePlayerInput();
+        this.player.update(dt);
+        this.gameScenes[this.gameScenes.length - 1].update(this.player);
+    }
 
-    document.onkeydown = function (e) {
-      let key = e.key.toLocaleLowerCase();
-      if (key == "d") that.#player.move(1, 0);
-      if (key == "a") that.#player.move(-1, 0);
-    };
-  }
+    //Render
 
-  update(dt) {
-    this.updatePlayerInput();
-    this.#player.update(dt);
-    this.#gameScenes[this.#gameScenes.length - 1].update(this.#player);
-  }
+    render() {
+        this.gameScenes[this.gameScenes.length - 1].render();
+        this.player.render();
+    }
 
-  //Render
+    //Run
 
-  render() {
-    this.#gameScenes[this.#gameScenes.length - 1].render();
-    this.#player.render();
-  }
-
-  //Run
-
-  run(dt) {
-    this.update(dt);
-    this.render();
-  }
+    run(dt) {
+        this.update(dt);
+        this.render();
+    }
 }

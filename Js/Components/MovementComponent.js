@@ -22,6 +22,10 @@ export default class MovementComponent {
   getVeloctiy() {
     return this.#velocity;
   }
+  stopVelocity() {
+    this.#velocity.x = 0.0;
+    this.#velocity.y = 0.0;
+  }
   move(dir_x, dir_y) {
     this.#velocity.x = this.#velocity.x + (this.#acceleration * dir_x);
     this.#velocity.y = this.#velocity.y + (this.#acceleration * dir_y);
@@ -30,7 +34,7 @@ export default class MovementComponent {
     if (this.#velocity.x > 0.0) {
       if (this.#velocity.x > this.#maxVelocity)
         this.#velocity.x = this.#maxVelocity;
- 
+
       this.#velocity.x -= this.#deceleration;
       if (this.#velocity.x < 0.0) this.#velocity.x = 0.0;
     }
@@ -42,6 +46,6 @@ export default class MovementComponent {
       if (this.#velocity.x > 0.0) this.#velocity.x = 0.0;
     }
     let temp = (this.#velocity.x / dt).toFixed(2);
-    this.#box.moveObject(Number(temp) ,this.#velocity.y / dt);
+    this.#box.moveObject(Number(temp), this.#velocity.y / dt);
   }
 }

@@ -3,10 +3,14 @@ import Game from "./Game.js";
 const game = new Game();
 //Game core
 
-let lastTime = 0;
-(function gameloop(timestamp = 0) {
-  let deltaTime = timestamp - lastTime;
-  lastTime = timestamp;
-  game.run(deltaTime);
-  requestAnimationFrame(gameloop);
-})();
+let lastTick = performance.now();
+
+function tick(nowish) {
+  const delta = nowish - lastTick;
+  lastTick = nowish;
+
+  game.run(delta);
+  window.requestAnimationFrame(tick);
+}
+
+window.requestAnimationFrame(tick);
